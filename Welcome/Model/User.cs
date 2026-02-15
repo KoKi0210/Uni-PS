@@ -26,7 +26,7 @@ namespace Welcome.Model
             }
         }
 
-        public int ID
+        public virtual int ID
         {
             get { return id; }
             set { id = value; }

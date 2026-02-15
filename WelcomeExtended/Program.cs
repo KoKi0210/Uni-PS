@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 using Welcome.Model;
 using Welcome.Others;
 using WelcomeExtended.Data;
@@ -52,16 +53,19 @@ namespace WelcomeExtended
                 string name = Console.ReadLine();
                 Console.WriteLine("Enter password: ");
                 string password = Console.ReadLine();
-                
-                if(UserDataHelper.ValidateCredentials(userData, name, password))
+
+
+                if (UserDataHelper.ValidateCredentials(userData, name, password))
                 {
                     UserHelper.ToUserString(UserDataHelper.GetUser(userData, name, password));
                     SuccesssfulLoginFileLogger successsfulLogin = new SuccesssfulLoginFileLogger("loggingLog.txt");
                     successsfulLogin.Log(name);
+                    DbLogger.Log("User with name " + name + " logged in successfully!");
                 }
                 else
                 {
                     throw new ArgumentException("User with such credentials does not exist!");
+
                 }
 
             }
@@ -70,6 +74,7 @@ namespace WelcomeExtended
                 ErrorFileLogger errorFileLogger = new ErrorFileLogger("errorsLog.txt");
                 var log = new ActionOnError(Delegates.Log);
                 log += errorFileLogger.Log;
+                log += DbLogger.Log;
                 log(ex.Message);
             }
             finally
