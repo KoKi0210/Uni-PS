@@ -1,0 +1,2 @@
+15.2.2026 г. 10:57:52: Name and password cannot be null or empty.
+15.2.2026 г. 11:00:11: User with such credentials does not exist!
