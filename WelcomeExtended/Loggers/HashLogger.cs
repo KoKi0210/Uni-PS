@@ -6,13 +6,14 @@ using Microsoft.Extensions.Logging;
 
 namespace WelcomeExtended.Loggers
 {
-    internal class HashLogger : ILogger
+    internal class HashLogger: ILogger
     {
-        private static readonly ConcurrentDictionary<int, string> _logMessages = new ConcurrentDictionary<int, string>();
+        private readonly ConcurrentDictionary<int, string> _logMessages;
         private readonly string _name;
         public HashLogger(string name)
         {
-            _name = name;
+            _name = name; 
+            _logMessages = new ConcurrentDictionary<int, string>();
         }
 
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull
@@ -56,11 +57,6 @@ namespace WelcomeExtended.Loggers
 
         public void printLogMessages()
         {
-            if (_logMessages.IsEmpty)
-            {
-                Console.WriteLine("No log messages to display.");
-                return;
-            }
             Console.WriteLine("Saved log messages:");
             foreach (var kvp in _logMessages)
             {
@@ -78,19 +74,7 @@ namespace WelcomeExtended.Loggers
                     return;
                 }
             }
-            Console.WriteLine($"No log messages found with EventId: {id.Id}");
-        }
-
-        public void DeleteLogMessageById(EventId id)
-        {
-            if (_logMessages.TryRemove(id.Id, out _))
-            {
-                Console.WriteLine($"Log message with EventId {id.Id} deleted.");
-            }
-            else
-            {
-                Console.WriteLine($"No log message found with EventId: {id.Id}");
-            }
+                Console.WriteLine($"No log messages found with EventId: {id.Id}");
         }
     }
 }

@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="DataLayer/DataLayer.csproj" />
+  <Project Path="UI/UI.csproj" />
   <Project Path="Welcome/Welcome.csproj" />
   <Project Path="WelcomeExtended/WelcomeExtended.csproj" />
 </Solution>
