@@ -11,7 +11,7 @@
         <converters:PasswordToAsterisksConverter x:Key="PassConverter" />
     </UserControl.Resources>
     <Grid>
-        <DataGrid ItemsSource="{Binding}" Name="students" AutoGenerateColumns="False">
+        <DataGrid ItemsSource="{Binding Users}" Name="students" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" IsReadOnly="True" Binding="{Binding ID}" />
                 <DataGridTextColumn Header="Names" IsReadOnly="True" Binding="{Binding Names}" />

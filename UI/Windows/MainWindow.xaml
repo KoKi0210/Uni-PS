@@ -9,6 +9,5 @@
         xmlns:local2="clr-namespace:UI.Components">
     <Grid>
         <local2:StudentsList x:Name="studentList" Padding="2"></local2:StudentsList>
-        <local2:LogsList x:Name="logsList"></local2:LogsList>
     </Grid>
 </Window>
